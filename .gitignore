@@ -1,0 +1,22 @@
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+.env.*
+
+# Jupyter artifacts
+.ipynb_checkpoints/
+
+# Local tool folders
+.vercel/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
