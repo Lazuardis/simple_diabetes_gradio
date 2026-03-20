@@ -64,21 +64,60 @@ with gr.Blocks(title="Diabetes Predictor") as demo:
     gr.Markdown(
         "Fill in the patient values below and click Predict to run the saved decision tree model."
     )
+    gr.Markdown(
+        "Prediction output: `0` means not diabetic and `1` means diabetic. "
+        "The app shows a friendly text label instead of the raw class number."
+    )
 
     with gr.Row():
-        pregnancies = gr.Number(label="Pregnancies", value=1, precision=0)
-        glucose = gr.Number(label="Glucose", value=120, precision=0)
-        blood_pressure = gr.Number(label="BloodPressure", value=70, precision=0)
-        skin_thickness = gr.Number(label="SkinThickness", value=20, precision=0)
+        pregnancies = gr.Number(
+            label="Pregnancies",
+            info="Number of times pregnant.",
+            value=1,
+            precision=0,
+        )
+        glucose = gr.Number(
+            label="Glucose",
+            info="Plasma glucose concentration 2 hours after an oral glucose tolerance test.",
+            value=120,
+            precision=0,
+        )
+        blood_pressure = gr.Number(
+            label="BloodPressure",
+            info="Diastolic blood pressure in mm Hg.",
+            value=70,
+            precision=0,
+        )
+        skin_thickness = gr.Number(
+            label="SkinThickness",
+            info="Triceps skin fold thickness in mm.",
+            value=20,
+            precision=0,
+        )
 
     with gr.Row():
-        insulin = gr.Number(label="Insulin", value=79, precision=0)
-        bmi = gr.Number(label="BMI", value=28.5)
+        insulin = gr.Number(
+            label="Insulin",
+            info="2-hour serum insulin in mu U/ml.",
+            value=79,
+            precision=0,
+        )
+        bmi = gr.Number(
+            label="BMI",
+            info="Body mass index measured as weight in kg divided by height in meters squared.",
+            value=28.5,
+        )
         diabetes_pedigree_function = gr.Number(
             label="DiabetesPedigreeFunction",
+            info="Diabetes pedigree function, a score related to family history of diabetes.",
             value=0.47,
         )
-        age = gr.Number(label="Age", value=33, precision=0)
+        age = gr.Number(
+            label="Age",
+            info="Age in years.",
+            value=33,
+            precision=0,
+        )
 
     predict_button = gr.Button("Predict", variant="primary")
     output = gr.Textbox(label="Prediction Result")
