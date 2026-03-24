@@ -21,8 +21,18 @@ FEATURE_COLUMNS = [
 ]
 
 
+class NumpyCompatUnpickler(pickle.Unpickler):
+    def find_class(self, module, name):
+        # Support model artifacts created across NumPy 1.x <-> 2.x internal path changes.
+        if module.startswith("numpy._core"):
+            module = module.replace("numpy._core", "numpy.core", 1)
+        elif module.startswith("numpy.core"):
+            module = module.replace("numpy.core", "numpy._core", 1)
+        return super().find_class(module, name)
+
+
 with MODEL_PATH.open("rb") as model_file:
-    model = pickle.load(model_file)
+    model = NumpyCompatUnpickler(model_file).load()
 
 
 def predict_diabetes(
